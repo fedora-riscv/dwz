@@ -1,6 +1,6 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
-Version: 0.5
+Version: 0.6
 Release: 1%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
@@ -42,6 +42,10 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Tue Jul 17 2012 Jakub Jelinek <jakub@redhat.com> 0.6-1
+- add --version/-v option support (Matt Newsome)
+- fix building on RHEL 5
+
 * Wed Jul  4 2012 Jakub Jelinek <jakub@redhat.com> 0.5-1
 - handle .gdb_index version 7
 
