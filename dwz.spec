@@ -1,6 +1,6 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
-Version: 0.7
+Version: 0.8
 Release: 1%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
@@ -42,6 +42,10 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Thu Nov 29 2012 Jakub Jelinek <jakub@redhat.com> 0.8-1
+- fix recompute_abbrevs (#880634)
+- optimize DW_FORM_data[48] DW_AT_high_pc that GCC 4.8 produces
+
 * Fri Aug 10 2012 Jakub Jelinek <jakub@redhat.com> 0.7-1
 - fix iterative hasing on big-endian targets (#846685)
 
