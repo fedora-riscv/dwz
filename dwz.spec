@@ -1,6 +1,6 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
-Version: 0.8
+Version: 0.9
 Release: 1%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
@@ -42,6 +42,11 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Mon Feb  4 2013 Jakub Jelinek <jakub@redhat.com> 0.9-1
+- fix up handling of DIE equality if more than one DIE in the same
+  CU compare equal (#889283)
+- check DW_FORM_ref_addr properly during fi_multifile phase
+
 * Thu Nov 29 2012 Jakub Jelinek <jakub@redhat.com> 0.8-1
 - fix recompute_abbrevs (#880634)
 - optimize DW_FORM_data[48] DW_AT_high_pc that GCC 4.8 produces
