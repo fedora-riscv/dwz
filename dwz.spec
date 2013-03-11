@@ -1,6 +1,6 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
-Version: 0.9
+Version: 0.10
 Release: 1%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
@@ -42,6 +42,10 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Mon Mar 11 2013 Jakub Jelinek <jakub@redhat.com> 0.10-1
+- when creating DW_AT_stmt_list, use DW_FORM_sec_offset for dwarf4
+  and DW_FORM_data4 for dwarf[23] rather than vice versa (#919755)
+
 * Mon Feb  4 2013 Jakub Jelinek <jakub@redhat.com> 0.9-1
 - fix up handling of DIE equality if more than one DIE in the same
   CU compare equal (#889283)
