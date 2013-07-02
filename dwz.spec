@@ -1,6 +1,6 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
-Version: 0.10
+Version: 0.11
 Release: 1%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
@@ -42,6 +42,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Tue Jul  2 2013 Jakub Jelinek <jakub@redhat.com> 0.11-1
+- handle .gdb_index version 8 (#969454)
+
 * Mon Mar 11 2013 Jakub Jelinek <jakub@redhat.com> 0.10-1
 - when creating DW_AT_stmt_list, use DW_FORM_sec_offset for dwarf4
   and DW_FORM_data4 for dwarf[23] rather than vice versa (#919755)
