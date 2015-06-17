@@ -1,7 +1,7 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.11
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
 # git archive --format=tar --remote=git://sourceware.org/git/dwz.git \
@@ -42,6 +42,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.11-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Sat Feb 21 2015 Till Maas <opensource@till.name> - 0.11-5
 - Rebuilt for Fedora 23 Change
   https://fedoraproject.org/wiki/Changes/Harden_all_packages_with_position-independent_code
