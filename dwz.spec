@@ -8,7 +8,6 @@ Group: Development/Tools
 #   --prefix=%{name}-%{version}/ %{name}-%{version} \
 #   | bzip2 -9 > %{name}-%{version}.tar.bz2
 Source: %{name}-%{version}.tar.bz2
-BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildRequires: elfutils-libelf-devel%{?_isa}
 
 %description
