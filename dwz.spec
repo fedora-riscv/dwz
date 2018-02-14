@@ -31,9 +31,6 @@ rm -rf %{buildroot}
 make DESTDIR=%{buildroot} prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir} \
   install
 
-%clean
-rm -rf %{buildroot}
-
 %files
 %defattr(-,root,root)
 %license COPYING COPYING3 COPYING.RUNTIME
