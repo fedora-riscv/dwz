@@ -1,7 +1,7 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.12
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
 # git archive --format=tar --remote=git://sourceware.org/git/dwz.git \
@@ -23,8 +23,8 @@ and using DW_TAG_imported_unit to import it into each CU that needs it.
 %setup -q
 
 %build
-make %{?_smp_mflags} CFLAGS='%{optflags}' prefix=%{_prefix} \
-  mandir=%{_mandir} bindir=%{_bindir}
+make %{?_smp_mflags} CFLAGS='%{optflags}' LDFLAGS='%{build_ldflags}' \
+  prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir}
 
 %install
 rm -rf %{buildroot}
@@ -38,6 +38,9 @@ make DESTDIR=%{buildroot} prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir} 
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Fri Feb 23 2018 Florian Weimer <fweimer@redhat.com> - 0.12-7
+- Use LDFLAGS from redhat-rpm-config
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.12-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
