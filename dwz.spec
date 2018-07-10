@@ -32,7 +32,6 @@ make DESTDIR=%{buildroot} prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir} 
   install
 
 %files
-%defattr(-,root,root)
 %license COPYING COPYING3 COPYING.RUNTIME
 %{_bindir}/dwz
 %{_mandir}/man1/dwz.1*
