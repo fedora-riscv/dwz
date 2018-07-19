@@ -1,14 +1,14 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.12
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: GPLv2+ and GPLv3+
 Group: Development/Tools
 # git archive --format=tar --remote=git://sourceware.org/git/dwz.git \
-#   --prefix=%{name}-%{version}/ %{name}-%{version} \
-#   | bzip2 -9 > %{name}-%{version}.tar.bz2
+#   --prefix=%%{name}-%%{version}/ %%{name}-%%{version} \
+#   | bzip2 -9 > %%{name}-%%{version}.tar.bz2
 Source: %{name}-%{version}.tar.bz2
-BuildRequires: elfutils-libelf-devel%{?_isa}
+BuildRequires: gcc, elfutils-libelf-devel
 
 %description
 The dwz package contains a program that attempts to optimize DWARF
@@ -37,6 +37,10 @@ make DESTDIR=%{buildroot} prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir} 
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Thu Jul 19 2018 Marek Polacek <polacek@redhat.com> 0.12-9
+- remove %{?_isa} from BuildRequires (#1545173)
+- add gcc to BuildRequires
+
 * Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.12-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
