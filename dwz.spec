@@ -3,7 +3,6 @@ Name: dwz
 Version: 0.12
 Release: 9%{?dist}
 License: GPLv2+ and GPLv3+
-Group: Development/Tools
 # git archive --format=tar --remote=git://sourceware.org/git/dwz.git \
 #   --prefix=%%{name}-%%{version}/ %%{name}-%%{version} \
 #   | bzip2 -9 > %%{name}-%%{version}.tar.bz2
