@@ -1,13 +1,10 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
-Version: 0.12
-Release: 11%{?dist}
+Version: 0.13
+Release: 1%{?dist}
 License: GPLv2+ and GPLv3+
-# git archive --format=tar --remote=git://sourceware.org/git/dwz.git \
-#   --prefix=%%{name}-%%{version}/ %%{name}-%%{version} \
-#   | bzip2 -9 > %%{name}-%%{version}.tar.bz2
-Source: %{name}-%{version}.tar.bz2
-BuildRequires: gcc, elfutils-libelf-devel
+Source: https://sourceware.org/ftp/dwz/releases/%{name}-%{version}.tar.xz
+BuildRequires: gcc, elfutils-libelf-devel, dejagnu
 
 %description
 The dwz package contains a program that attempts to optimize DWARF
@@ -19,7 +16,7 @@ DW_TAG_partial_unit compilation units (CUs) for duplicated information
 and using DW_TAG_imported_unit to import it into each CU that needs it.
 
 %prep
-%setup -q
+%setup -q -n dwz
 
 %build
 make %{?_smp_mflags} CFLAGS='%{optflags}' LDFLAGS='%{build_ldflags}' \
@@ -30,12 +27,19 @@ rm -rf %{buildroot}
 make DESTDIR=%{buildroot} prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir} \
   install
 
+%check
+make check
+
 %files
 %license COPYING COPYING3 COPYING.RUNTIME
 %{_bindir}/dwz
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Wed Dec 11 2019 Jakub Jelinek <jakub@redhat.com> 0.13-1
+- update to a new upstream release
+- add make check
+
 * Wed Jul 24 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.12-11
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
