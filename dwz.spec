@@ -5,6 +5,7 @@ Release: 4%{?dist}
 License: GPLv2+ and GPLv3+
 Source: https://sourceware.org/ftp/dwz/releases/%{name}-%{version}.tar.xz
 BuildRequires: gcc, elfutils-libelf-devel, dejagnu
+BuildRequires: make
 
 %description
 The dwz package contains a program that attempts to optimize DWARF
