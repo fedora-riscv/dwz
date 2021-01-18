@@ -1,9 +1,11 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.13
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv2+ and GPLv3+
-Source: https://sourceware.org/ftp/dwz/releases/%{name}-%{version}.tar.xz
+#Source: https://sourceware.org/ftp/dwz/releases/%{name}-%{version}.tar.xz
+#git clone git://sourceware.org/git/dwz; cd dwz; git archive --format=tar --prefix=dwz/ 40d5efd4edc52a7d2ed02f8400a9beb129053271 | xz -9e > ../dwz-20210118.tar.xz
+Source: %{name}-20210118.tar.xz
 BuildRequires: gcc, elfutils-libelf-devel, dejagnu
 BuildRequires: make
 
@@ -36,6 +38,10 @@ make check
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Mon Jan 18 2021 Jakub Jelinek <jakub@redhat.com> 0.13-5
+- update to latest git snapshot
+  - DWARF5 support
+
 * Mon Jul 27 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.13-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
