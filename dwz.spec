@@ -33,6 +33,8 @@ rm -rf %{buildroot}
 
 %check
 rm -f testsuite/dwz.tests/odr*
+sed -i -e 's/odr-struct odr-class odr-union odr-struct-ns//' Makefile
+sed -i -e 's/odr-class-ns odr-union-ns odr-loc//' Makefile
 make check
 
 %files
