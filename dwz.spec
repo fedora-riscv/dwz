@@ -1,11 +1,12 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.13
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+ and GPLv3+
 #Source: https://sourceware.org/ftp/dwz/releases/%{name}-%{version}.tar.xz
 #git clone git://sourceware.org/git/dwz; cd dwz; git archive --format=tar --prefix=dwz/ 40d5efd4edc52a7d2ed02f8400a9beb129053271 | xz -9e > ../dwz-20210118.tar.xz
 Source: %{name}-20210118.tar.xz
+Patch: %{name}.patch
 BuildRequires: gcc, gcc-c++, gdb, elfutils-libelf-devel, dejagnu
 BuildRequires: make
 
@@ -20,6 +21,7 @@ and using DW_TAG_imported_unit to import it into each CU that needs it.
 
 %prep
 %setup -q -n dwz
+%patch -p1
 
 %build
 %make_build CFLAGS='%{optflags}' LDFLAGS='%{build_ldflags}' \
@@ -38,6 +40,9 @@ make check
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Wed Jan 20 2021 Jakub Jelinek <jakub@redhat.com> 0.13-6
+- DW_FORM_implicit_const handling fixes (sw#27212, sw#27213)
+
 * Mon Jan 18 2021 Jakub Jelinek <jakub@redhat.com> 0.13-5
 - update to latest git snapshot
   - DWARF5 support
