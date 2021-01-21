@@ -1,8 +1,8 @@
 diff --git a/Makefile b/Makefile
-index 340569a..94b77b1 100644
+index 340569a..236a3dc 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -99,32 +99,32 @@ $(TEST_EXECS_DWARF_ASM): %: %-dw.S
+@@ -99,37 +99,37 @@ $(TEST_EXECS_DWARF_ASM): %: %-dw.S
  	$(CC) $(TEST_SRC)/main.c $< -o $@
  
  odr-struct:
@@ -42,3 +42,9 @@ index 340569a..94b77b1 100644
  
  
  def-decl:
+ 	$(CXX) $(TEST_SRC)/decl.c $(TEST_SRC)/def.c $(TEST_SRC)/def2.c -I$(TEST_SRC) \
+-	  -o $@ -g
++	  -o $@ -gdwarf-4
+ 
+ # On some systems we need to set and export DEJAGNU to suppress
+ # WARNING: Couldn't find the global config file.
