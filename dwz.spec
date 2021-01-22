@@ -1,11 +1,11 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.13
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2+ and GPLv3+
 #Source: https://sourceware.org/ftp/dwz/releases/%{name}-%{version}.tar.xz
-#git clone git://sourceware.org/git/dwz; cd dwz; git archive --format=tar --prefix=dwz/ 47af8da7c8533924e96d1dbd97625b6a4dc35855 | xz -9e > ../dwz-20210121.tar.xz
-Source: %{name}-20210121.tar.xz
+#git clone git://sourceware.org/git/dwz; cd dwz; git archive --format=tar --prefix=dwz/ 216d4fadd5a475ed6a1bc565081b630b586155eb | xz -9e > ../dwz-20210122.tar.xz
+Source: %{name}-20210122.tar.xz
 Patch: %{name}.patch
 BuildRequires: gcc, gcc-c++, gdb, elfutils-libelf-devel, dejagnu
 BuildRequires: make
@@ -40,6 +40,9 @@ make check
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Fri Jan 22 2021 Mark Wielaard <mjw@fedoraproject.org> 0.13-7
+- Don't crash on DWARF5 .debug_line table with zero files (#1919243)
+
 * Thu Jan 21 2021 Jakub Jelinek <jakub@redhat.com> 0.13-6
 - DW_FORM_implicit_const handling fixes (sw#27212, sw#27213)
 - temporarily build odr tests with -gdwarf-4 as they are incompatible with
