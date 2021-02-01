@@ -28,7 +28,6 @@ and using DW_TAG_imported_unit to import it into each CU that needs it.
   prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir}
 
 %install
-rm -rf %{buildroot}
 %make_install prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir}
 
 %check
