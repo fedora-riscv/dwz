@@ -1,12 +1,9 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
-Version: 0.13
-Release: 8%{?dist}
+Version: 0.14
+Release: 1%{?dist}
 License: GPLv2+ and GPLv3+
-#Source: https://sourceware.org/ftp/dwz/releases/%{name}-%{version}.tar.xz
-#git clone git://sourceware.org/git/dwz; cd dwz; git archive --format=tar --prefix=dwz/ 216d4fadd5a475ed6a1bc565081b630b586155eb | xz -9e > ../dwz-20210122.tar.xz
-Source: %{name}-20210122.tar.xz
-Patch: %{name}.patch
+Source: %{name}-0.14.tar.xz
 BuildRequires: gcc, gcc-c++, gdb, elfutils-libelf-devel, dejagnu
 BuildRequires: make
 
@@ -21,13 +18,13 @@ and using DW_TAG_imported_unit to import it into each CU that needs it.
 
 %prep
 %setup -q -n dwz
-%patch -p1
 
 %build
 %make_build CFLAGS='%{optflags}' LDFLAGS='%{build_ldflags}' \
   prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir}
 
 %install
+rm -rf %{buildroot}
 %make_install prefix=%{_prefix} mandir=%{_mandir} bindir=%{_bindir}
 
 %check
@@ -39,8 +36,8 @@ make check
 %{_mandir}/man1/dwz.1*
 
 %changelog
-* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.13-8
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+* Tue Mar 09 2021 Jakub Jelinek <jakub@redhat.com> 0.14-1
+- update to a new upstream release
 
 * Fri Jan 22 2021 Mark Wielaard <mjw@fedoraproject.org> 0.13-7
 - Don't crash on DWARF5 .debug_line table with zero files (#1919243)
