@@ -1,6 +1,5 @@
 b f
 r
-s
 p x
 p/x var
 c

@@ -1,4 +1,0 @@
-#!/bin/bash
-export TEST_DOCKER_EXTRA_ARGS="--cap-add=SYS_PTRACE"
-exec merge-standard-inventory "$@"
-

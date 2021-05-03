@@ -1,0 +1,14 @@
+summary: dwz testing by upstream testsuite
+description: ''
+contact: Michal Kolar <mkolar@redhat.com>
+component:
+- dwz
+test: ./runtest.sh
+framework: beakerlib
+recommend:
+- dwz
+- rpm-build
+- yum-utils
+duration: 1h
+extra-summary: /tools/dwz/Sanity/dwz-testsuite
+extra-task: /tools/dwz/Sanity/dwz-testsuite

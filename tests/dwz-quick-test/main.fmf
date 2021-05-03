@@ -1,0 +1,15 @@
+summary: Quick sanity test
+description: ''
+contact: Miroslav Franc <mfranc@redhat.com>
+component:
+- dwz
+test: ./runtest.sh
+framework: beakerlib
+recommend:
+- dwz
+- gcc
+- gdb
+- glibc-debuginfo
+duration: 2m
+extra-summary: /tools/dwz/dwz-quick-test
+extra-task: /tools/dwz/dwz-quick-test
