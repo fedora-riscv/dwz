@@ -1,11 +1,14 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.14
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2+ and GPLv3+
 Source: %{name}-0.14.tar.xz
 BuildRequires: gcc, gcc-c++, gdb, elfutils-libelf-devel, dejagnu
 BuildRequires: make
+
+# Patches
+Patch1: dwz-0.14-binutils-Wn.patch
 
 %description
 The dwz package contains a program that attempts to optimize DWARF
@@ -17,7 +20,7 @@ DW_TAG_partial_unit compilation units (CUs) for duplicated information
 and using DW_TAG_imported_unit to import it into each CU that needs it.
 
 %prep
-%setup -q -n dwz
+%autosetup -p1 -n dwz
 
 %build
 %make_build CFLAGS='%{optflags}' LDFLAGS='%{build_ldflags}' \
@@ -36,6 +39,9 @@ make check
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Sat Jun 26 2021 Mark Wielaard <mjw@fedoraproject.org> 0.14-4
+- Add dwz-0.14-binutils-Wn.patch
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.14-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
