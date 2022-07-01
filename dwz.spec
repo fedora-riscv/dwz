@@ -1,7 +1,7 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.14
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+ and GPLv3+
 Source: %{name}-0.14.tar.xz
 BuildRequires: gcc, gcc-c++, gdb, elfutils-libelf-devel, dejagnu
@@ -10,6 +10,7 @@ BuildRequires: make elfutils
 # Patches
 Patch1: dwz-0.14-binutils-Wn.patch
 Patch2: dwz-0.14-binutils-readelf-alt.patch
+Patch3: dwz-0.14-gdb-add-index.patch
 
 %description
 The dwz package contains a program that attempts to optimize DWARF
@@ -40,6 +41,9 @@ make check
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Fri Jul  1 2022 Mark Wielaard <mjw@fedoraproject.org> 0.14-6
+- Add dwz-0.14-gdb-add-index.patch
+
 * Wed Jun 29 2022 Mark Wielaard <mjw@fedoraproject.org> 0.14-5
 - Add dwz-0.14-binutils-readelf-alt.patch
 - BuildRequires elfutils (for tests)
