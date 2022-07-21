@@ -1,7 +1,7 @@
 Summary: DWARF optimization and duplicate removal tool
 Name: dwz
 Version: 0.14
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2+ and GPLv3+
 Source: %{name}-0.14.tar.xz
 BuildRequires: gcc, gcc-c++, gdb, elfutils-libelf-devel, dejagnu
@@ -41,6 +41,9 @@ make check
 %{_mandir}/man1/dwz.1*
 
 %changelog
+* Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.14-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Fri Jul  1 2022 Mark Wielaard <mjw@fedoraproject.org> 0.14-6
 - Add dwz-0.14-gdb-add-index.patch
 
