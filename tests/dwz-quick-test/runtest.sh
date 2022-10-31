@@ -29,32 +29,34 @@
 # Include Beaker environment
 . /usr/share/beakerlib/beakerlib.sh || exit 1
 
+export PACKAGE="${PACKAGE:-$(rpm -qf --qf='%{name}\n' `which dwz`)}"
+REQUIRES="$PACKAGE gcc glibc gdb"
+
 rlJournalStart
-    rlPhaseStartSetup
-        rlAssertRpm gcc
-        rlAssertRpm gdb
-        rlRun "TmpDir=\$(mktemp -d)" 0 "Creating tmp directory"
-        rlRun "cp something.c cmd.txt $TmpDir"
-        rlRun "pushd $TmpDir"
-        rlRun "gcc -g -O2 something.c -o something.out"
-        rlRun "cp something.out something.dwz"
-    rlPhaseEnd
+  rlPhaseStartSetup
+    rlShowRunningKernel
+    rlAssertRpm --all
+    rlRun "TmpDir=\$(mktemp -d)"
+    rlRun "cp -r testcase.c cmds $TmpDir"
+    rlRun "pushd $TmpDir"
+    rlRun "gcc -g -O0 -o testcase testcase.c"
+    rlRun "cp testcase testcase.dwz"
+  rlPhaseEnd
 
-    rlPhaseStartTest "no crash + saved space"
-        rlRun "dwz something.dwz"
-        rlRun "[[ $(wc -c <something.out) -gt $(wc -c <something.dwz) ]]"
-    rlPhaseEnd
+  rlPhaseStartTest
+    rlRun "dwz testcase.dwz"
+    rlRun "BYTES_BASE_FILE=`wc -c <testcase`"
+    rlRun "BYTES_DWZED_FILE=`wc -c <testcase.dwz`"
+    [ $BYTES_DWZED_FILE -gt $BYTES_BASE_FILE ] && rlFail "DWZed file should not be greater than the original file."
+    rlRun "gdb --command=cmds --quiet --batch testcase.dwz |& tee $TmpDir/testcase.log; test \${PIPESTATUS[0]} -eq 0"
+    rlRun "grep 'hello, world' $TmpDir/testcase.log"
+    rlRun "grep '\$1 = -1' $TmpDir/testcase.log"
+    rlRun "grep '\$2 = 0x2a' $TmpDir/testcase.log"
+  rlPhaseEnd
 
-    rlPhaseStartTest "can we debug it?"
-        rlRun "gdb -x cmd.txt -batch -q ./something.dwz > log 2>&1"
-        rlRun "[[ $(grep -c 'hello, world' log) -eq 2 ]]"
-        rlAssertGrep '$1 = -1' log
-        rlAssertGrep '$2 = 0x2a' log
-    rlPhaseEnd
-
-    rlPhaseStartCleanup
-        rlRun "popd"
-        rlRun "rm -r $TmpDir" 0 "Removing tmp directory"
-    rlPhaseEnd
+  rlPhaseStartCleanup
+    rlRun "popd"
+    rlRun "rm -r $TmpDir"
+  rlPhaseEnd
 rlJournalPrintText
 rlJournalEnd

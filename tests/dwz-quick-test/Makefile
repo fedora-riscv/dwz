@@ -29,7 +29,7 @@ export TESTVERSION=1.0
 
 BUILT_FILES=
 
-FILES=$(METADATA) runtest.sh Makefile PURPOSE something.c cmd.txt
+FILES=$(METADATA) runtest.sh Makefile PURPOSE testcase.c cmds
 
 .PHONY: all install download clean
 
